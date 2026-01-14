@@ -1,0 +1,32 @@
+replication_factor = 1
+consistency_mode = "consistent"
+
+metadata_dir = "/var/lib/garage/meta"
+data_dir = "/var/lib/garage/data"
+
+db_engine = "lmdb"
+
+# Data safety settings
+metadata_fsync = true
+data_fsync = true
+
+# RPC Configuration
+rpc_bind_addr = "[::]:3901"
+# rpc_public_addr MUST be set to the IP address other nodes will use to contact this node.
+# For a single-node setup, localhost is fine. If clustering, use the VM's public/LAN IP.
+rpc_public_addr = "127.0.0.1:3901"
+rpc_secret = "REPLACE_WITH_YOUR_RPC_SECRET"
+
+[s3_api]
+api_bind_addr = "[::]:3900"
+s3_region = "garage"
+root_domain = ".s3.domain.tld"
+
+[s3_web]
+bind_addr = "[::]:3902"
+root_domain = ".web.domain.tld"
+
+[admin]
+api_bind_addr = "0.0.0.0:3903"
+admin_token = "REPLACE_WITH_YOUR_ADMIN_TOKEN"
+metrics_token = "REPLACE_WITH_YOUR_METRICS_TOKEN"
